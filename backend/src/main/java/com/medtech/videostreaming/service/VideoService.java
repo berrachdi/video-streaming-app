@@ -5,11 +5,17 @@ import com.medtech.videostreaming.Repository.VideoRepository;
 import com.medtech.videostreaming.dto.CommentDTO;
 import com.medtech.videostreaming.dto.UploadVideoResponse;
 import com.medtech.videostreaming.dto.VideoDTO;
+import com.medtech.videostreaming.maper.MapperClass;
 import com.medtech.videostreaming.model.Comment;
+import com.medtech.videostreaming.model.User;
 import com.medtech.videostreaming.model.Video;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +25,8 @@ public class VideoService {
     final VideoRepository videoRepository;
     final UserService userService;
     final CommentRepository commentRepository;
+
+
 
     public UploadVideoResponse uploadVideo(MultipartFile file){
 
@@ -200,7 +208,7 @@ public class VideoService {
     }
 
 
-    public void addCommentToVideo(String videoid, CommentDTO commentDTO) {
+    public Video addCommentToVideo(String videoid, CommentDTO commentDTO) {
 
         // Find a video in the data base
            Video currentVideo = this.findVideo(videoid);
@@ -216,6 +224,24 @@ public class VideoService {
 
         // Save the comment in the database
            this.commentRepository.save(newComment);
+
+        // Get all comment for the video current from Database
+
+
+        return currentVideo;
+    }
+
+    public List<VideoDTO> getAllVideosLiked() {
+
+        List<VideoDTO> videoDTOList = new ArrayList<>();
+
+        // Find all videos id liked by current user
+        userService.getAllVideosliked().stream().forEach((videoId)->{
+            VideoDTO videoDTO = MapperClass.videoToVideoDTO(this.findVideo(videoId));
+            videoDTOList.add(videoDTO);
+        });
+
+        return videoDTOList;
 
 
     }

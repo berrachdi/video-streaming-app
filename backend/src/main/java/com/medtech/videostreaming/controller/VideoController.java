@@ -25,13 +25,9 @@ public class VideoController {
     private final UserService userService;
 
 
-
-
-
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UploadVideoResponse uploadVideo(@RequestParam("file") MultipartFile file){
+    public UploadVideoResponse uploadVideo(@RequestParam("file") MultipartFile file) {
 
         var uploadVideoResponse = videoService.uploadVideo(file);
         return uploadVideoResponse;
@@ -40,16 +36,16 @@ public class VideoController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public VideoDTO updateVideoMetaData(@RequestBody VideoDTO videoDTO){
+    public VideoDTO updateVideoMetaData(@RequestBody VideoDTO videoDTO) {
 
-            return videoService.updateMetaDataVideo(videoDTO);
+        return videoService.updateMetaDataVideo(videoDTO);
 
     }
 
     @PostMapping(value = "thumbnails")
     @ResponseStatus(HttpStatus.OK)
     public String uploadThumbnail(@RequestParam("file") MultipartFile file,
-                                    @RequestParam("videoid") String videoId){
+                                  @RequestParam("videoid") String videoId) {
 
         return videoService.uploadThumbnail(file, videoId);
 
@@ -57,19 +53,19 @@ public class VideoController {
 
     @GetMapping(value = "{videoid}/video-details")
     @ResponseStatus(HttpStatus.OK)
-    public VideoDTO videoDetails(@PathVariable String videoid){
+    public VideoDTO videoDetails(@PathVariable String videoid) {
         return videoService.videoDetails(videoid);
     }
 
     @PostMapping(value = "{videoid}/likes")
     @ResponseStatus(HttpStatus.OK)
-    public VideoDTO videoLikes(@PathVariable String videoid){
-            return videoService.likeVideo(videoid);
+    public VideoDTO videoLikes(@PathVariable String videoid) {
+        return videoService.likeVideo(videoid);
     }
 
     @PostMapping(value = "{videoid}/dislikes")
     @ResponseStatus(HttpStatus.OK)
-    public VideoDTO videoDislikes(@PathVariable String videoid){
+    public VideoDTO videoDislikes(@PathVariable String videoid) {
         return videoService.likeVideo(videoid);
     }
 
@@ -82,7 +78,7 @@ public class VideoController {
 
     @PostMapping(value = "/history")
     @ResponseStatus(HttpStatus.OK)
-    public Set<VideoDTO> GetVideosHistory(){
+    public Set<VideoDTO> GetVideosHistory() {
 
         return this.userService.getAllVideosHistory();
 
@@ -90,13 +86,21 @@ public class VideoController {
 
     @PostMapping(value = "/{videoid}/comments")
     @ResponseStatus(HttpStatus.OK)
-    public Set<VideoDTO> addCommentToVideo(@PathVariable String videoid,@RequestBody CommentDTO commentDTO){
+    public Video addCommentToVideo(@PathVariable String videoid, @RequestBody CommentDTO commentDTO) {
 
-        this.videoService.addCommentToVideo(videoid, commentDTO);
+        return this.videoService.addCommentToVideo(videoid, commentDTO);
+
+    }
+
+    @GetMapping(value = "/liked")
+    @ResponseStatus(HttpStatus.OK)
+        public List<VideoDTO> getAllVideosLiked() {
+
+        return this.videoService.getAllVideosLiked();
 
     }
 
 
-
-
 }
+
+
