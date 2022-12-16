@@ -20,6 +20,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -190,6 +191,11 @@ public class UserService {
             return String.format("You're subscribed to %s",otherUser.getFullName());
 
         }
+    }
+
+    public Set<String> getAllVideosliked(){
+         return this.getCurrenteUser().getLikedVideos();
+
     }
 
 
