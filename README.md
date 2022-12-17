@@ -3,17 +3,17 @@ In this project, we'll build a complete application from the scratch using Sprin
 we are not going to build the complete Clone of Youtube, but only a minimal set of functionality, which is common for Video Streaming applications like Youtube.
 
 # Functional Requirements
-We will be implementing the following features in this tutorial series, where we will cover each feature in a different part:
+We will be implementing the following features in this project:
 
--User can Upload new Videos
--User can Upload Thumbnails for the Videos
--User can View Videos
--User can Like/Dislike a Video
--User can Subscribe to another User, to receive updates about future videos
--User can Login/Logout using Single Sign On
--User can comment on Videos
--User can view the History of Videos he/she watched
--User can view the List of Videos he/she Liked
+-User can Upload new Videos<br/>
+-User can Upload Thumbnails for the Videos<br/>
+-User can View Videos<br/>
+-User can Like/Dislike a Video<br/>
+-User can Subscribe to another User, to receive updates about future videos<br/>
+-User can Login/Logout using Single Sign On<br/>
+-User can comment on Videos<br/>
+-User can view the History of Videos he/she watched<br/>
+-User can view the List of Videos he/she Liked<br/>
 
 # Technologies Used
 So to develop this project, we are going to use the following technologies:
